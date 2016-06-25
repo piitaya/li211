@@ -23,9 +23,14 @@
         });
 
         $stateProvider
+            .state('loginRedirect', {
+                url: '/login/redirect',
+                component: 'loginRedirect'
+            })
+
             .state('login', {
-                url: '/auth/redirect',
-                component: 'authRedirect'
+                url: '/login',
+                component: 'login'
             })
 
             .state ('main', {

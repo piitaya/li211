@@ -9,14 +9,16 @@
             controllerAs: "vm"
         });
 
-	HeaderComponent.$inject = [];
+	HeaderComponent.$inject = ["$mdSidenav"];
 
-	function HeaderComponent() {
+	function HeaderComponent($mdSidenav) {
 		var vm = this;
 
-		activate();
+		vm.toggleSidenav = toggleSidenav;
 
-		function activate() {
-		}
+		function toggleSidenav() {
+			$mdSidenav('sidenav').toggle();
+			console.log("test");
+		};
 	}
 })();

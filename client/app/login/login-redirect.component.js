@@ -3,15 +3,15 @@
 
 	angular
 		.module('app')
-		.component('authRedirect', {
+		.component('loginRedirect', {
 			template: '',
-			controller: AuthRedirectComponent,
+			controller: LoginRedirectComponent,
 			controllerAs: "vm"
 		});
 
-	AuthRedirectComponent.$inject = ['$location', '$state'];
+	LoginRedirectComponent.$inject = ['$location', '$state'];
 
-	function AuthRedirectComponent($location, $state) {
+	function LoginRedirectComponent($location, $state) {
 		var vm = this;
 
 		activate();
