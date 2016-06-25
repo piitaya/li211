@@ -1,0 +1,16 @@
+{
+  "google-login": {
+    "provider": "google",
+    "module": "passport-google-oauth",
+    "strategy": "OAuth2Strategy",
+    "clientID": "{{clientID}}",
+    "clientSecret": "{{clientSecret}",
+    "callbackURL": "http://localhost:3000/auth/google/callback",
+    "authPath": "/auth/google",
+    "callbackPath": "/auth/google/callback",
+    "successRedirect": "http://localhost:8181/#/auth/redirect",
+    "failureRedirect": "http://localhost:8181/#/login",
+    "scope": ["email", "profile"],
+    "authOptions": {"prompt": "select_account"}
+  }
+}
