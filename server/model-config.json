@@ -41,5 +41,13 @@
   "Role": {
     "dataSource": "db",
     "public": true
+  },
+  "article": {
+    "dataSource": "db",
+    "public": true
+  },
+  "comment": {
+    "dataSource": "db",
+    "public": true
   }
 }

@@ -5,6 +5,7 @@
         .module('app', [
             'ui.router',
             'ngMaterial',
-            'ngAnimate'
+            'ngAnimate',
+            'lbServices'
         ]);
 })();

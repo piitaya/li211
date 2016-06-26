@@ -9,17 +9,19 @@
 			controllerAs: "vm"
 		});
 
-	LoginRedirectComponent.$inject = ['$location', '$state'];
+	LoginRedirectComponent.$inject = ['$location', '$state', 'LoopBackAuth', 'User'];
 
-	function LoginRedirectComponent($location, $state) {
+	function LoginRedirectComponent($location, $state, LoopBackAuth, User) {
 		var vm = this;
 
-		activate();
-
-		function activate() {
+		vm.$onInit = function() {
             var params = $location.search();
-            console.log(params);
-			$state.go('main.home')
+			LoopBackAuth.currentUserId = params.userId;
+			LoopBackAuth.accessTokenId = params.accessToken;
+			LoopBackAuth.rememberMe = true;
+			LoopBackAuth.save();
+
+			$state.go('main.home');
 		}
 	}
 })();

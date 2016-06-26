@@ -8,7 +8,7 @@
     "callbackURL": "http://localhost:3000/auth/google/callback",
     "authPath": "/auth/google",
     "callbackPath": "/auth/google/callback",
-    "successRedirect": "http://localhost:8181/#/auth/redirect",
+    "successRedirect": "http://localhost:8181/#/login/redirect",
     "failureRedirect": "http://localhost:8181/#/login",
     "scope": ["email", "profile"],
     "authOptions": {"prompt": "select_account"}
