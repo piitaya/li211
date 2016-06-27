@@ -1,6 +1,7 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var passport = require('passport');
+var randomstring = require('randomstring');
 
 var app = module.exports = loopback();
 
@@ -69,6 +70,23 @@ for(var strategy in config) {
        return res.redirect(redirect);
      }
    )(req, res, next);
+ };
+
+ opts.profileToUser = function(provider, profile, options) {
+ // Let's create a user for that
+   var profileEmail = profile.emails && profile.emails[0] &&
+             profile.emails[0].value;
+   var generatedEmail = (profile.username || profile.id) + '@loopback.gadz.org';
+   var email = profileEmail ? profileEmail : generatedEmail;
+   var password = randomstring.generate(16);
+   var userObj = {
+     email: email,
+     password: password
+   };
+   userObj.lastname = profile.name.familyName;
+   userObj.firstname = profile.name.givenName;
+   userObj.photo = profile.photos[0].value;
+   return userObj;
  };
 
  passportConfigurator.configureProvider(strategy, opts);

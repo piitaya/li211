@@ -16,12 +16,17 @@
 
 		vm.$onInit = function() {
             var params = $location.search();
+			console.log(params);
 			LoopBackAuth.currentUserId = params.userId;
-			LoopBackAuth.accessTokenId = params.accessToken;
+			LoopBackAuth.accessTokenId = params.access_token;
 			LoopBackAuth.rememberMe = true;
 			LoopBackAuth.save();
 
 			$state.go('main.home');
+
+			User.getCurrent({filter: {include: "identities"}}).$promise.then(function(result) {
+				console.log(result);
+			})
 		}
 	}
 })();
