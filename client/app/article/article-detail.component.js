@@ -12,9 +12,9 @@
 		}
 	});
 
-	ArticleDetailComponent.$inject = ['Article'];
+	ArticleDetailComponent.$inject = ['Article', 'Comment'];
 
-	function ArticleDetailComponent(Article) {
+	function ArticleDetailComponent(Article, Comment) {
 		var vm = this;
 
 		vm.comments = [];
@@ -25,15 +25,7 @@
 			Article.comments({
 				id: vm.article.id,
 				filter: {
-					include: {
-						relation: "author",
-						scope: {
-							fields: {
-								"lastname": true,
-								"firstname": true
-							}
-						}
-					}
+					include: "author"
 				}
 			}).$promise.then(function(comments) {
 				vm.comments = comments;
@@ -42,7 +34,17 @@
 
 		function addComment() {
 			Article.comments.create({id: vm.article.id}, {content: vm.comment}).$promise.then(function(comment) {
+				return Comment.findOne({
+					filter: {
+						where: {
+							id: comment.id
+						},
+						include: "author"
+					}
+				}).$promise;
+			}).then(function(comment) {
 				vm.comments.push(comment);
+				vm.comment = "";
 			});
 		}
 	}

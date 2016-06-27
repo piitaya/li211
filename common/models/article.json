@@ -35,5 +35,8 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "mixins": {
+    "Counts": true
+  }
 }

@@ -28,6 +28,7 @@ module.exports = function(Article) {
     else {
       instance.modificationDate = new Date();
     }
+    console.log(instance);
     next();
   });
 };

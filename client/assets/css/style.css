@@ -15,3 +15,20 @@ main {
 a {
   text-decoration: none;
 }
+
+.md-subheader {
+  background: none;
+}
+
+.comment.md-3-line {
+  justify-content: flex-start;
+  min-height: 70px;
+}
+
+.comment.md-3-line .md-list-item-text {
+  margin: initial;
+}
+
+.comment.md-3-line .md-avatar {
+  margin-top: 0px;
+}

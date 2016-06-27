@@ -5,6 +5,9 @@ var randomstring = require('randomstring');
 
 var app = module.exports = loopback();
 
+// Add Counts Mixin to loopback
+require('loopback-counts-mixin')(app);
+
 // Create an instance of PassportConfigurator with the app instance
 var PassportConfigurator = require('loopback-component-passport').PassportConfigurator;
 var passportConfigurator = new PassportConfigurator(app);

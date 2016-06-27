@@ -63,7 +63,14 @@
       resolve: {
         article: function(Article, $stateParams) {
           var slug = $stateParams.slug;
-          return Article.findOne({where: {slug: slug}}).$promise;
+          return Article.findOne({
+            filter: {
+              where: {
+                slug: slug
+              },
+              include: "author"
+            }
+          }).$promise;
         }
       }
     });

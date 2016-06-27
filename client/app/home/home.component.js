@@ -17,7 +17,12 @@
 		vm.articles = [];
 
 		vm.$onInit = function() {
-			Article.find({}).$promise.then(function(articles) {
+			Article.find({
+				filter: {
+					include: "author",
+					counts: "comments"
+				}
+			}).$promise.then(function(articles) {
 				vm.articles = articles;
 			});
 		}

@@ -1,6 +1,4 @@
 <div class="container">
-  <h1>Home</h1>
-
   <a ui-sref="main.article({slug: article.slug})" ng-repeat="article in vm.articles">
     <md-card >
       <md-card-title>
@@ -14,7 +12,7 @@
       </md-card-title>
       <md-card-actions layout="row" layout-align="end center">
         <span><md-icon>visibility</md-icon> 0</span>
-        <span><md-icon>comment</md-icon> 3</span>
+        <span><md-icon>comment</md-icon> {{article.commentsCount}}</span>
       </md-card-actions>
     </md-card>
   </a>

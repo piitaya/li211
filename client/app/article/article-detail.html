@@ -1,9 +1,49 @@
-<h1>{{vm.article.title}} ({{vm.article.status}})</h1>
-<p>{{vm.article.content}}</p>
+<md-card>
+  <md-card-header>
+    <md-card-avatar>
+      <img src="" class="md-user-avatar"/>
+    </md-card-avatar>
+    <md-card-header-text>
+      <span class="md-title">{{vm.article.author.lastname}} {{vm.article.author.firstname}} - {{vm.article.author.buque}}</span>
+      <span class="md-subhead">{{vm.article.creationDate | date:"short"}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <img src="" class="md-card-image">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{vm.article.title}} ({{vm.article.status}})</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <p>
+      {{vm.article.content}}
+    </p>
+  </md-card-content>
+</md-card>
 
-<p ng-repeat="comment in vm.comments">{{comment.content}}</p>
+<md-card>
+  <md-card-content>
+    <form ng-submit="vm.addComment()">
+      <md-input-container class="md-block">
+        <label>Ton commentaire</label>
+        <textarea ng-model="vm.comment" rows="3"></textarea>
+      </md-input-container>
+      <div layout="row" layout-align="end center">
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="!vm.comment">Ajouter</md-button>
+      </div>
+    </form>
 
-<form ng-submit="vm.addComment()">
-  <textarea ng-model="vm.comment" ng-required></textarea>
-  <md-button type="submit">Ajouter<md-button>
-</form>
+    <md-list ng-if="vm.comments.length > 0">
+      <md-subheader class="md-no-sticky">Commentaires ({{vm.comments.length}})</md-subheader>
+      <md-list-item class="md-3-line md-long-text comment" ng-repeat="comment in vm.comments">
+        <img src="" class="md-avatar"/>
+        <div class="md-list-item-text">
+          <h3>{{comment.author ? comment.author.firstname  + " " + comment.author.lastname : "Anonymous"}}</h3>
+          <p>
+            {{comment.content}}
+          </p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>
