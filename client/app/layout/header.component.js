@@ -9,19 +9,25 @@
 		controllerAs: "vm"
 	});
 
-	HeaderComponent.$inject = ["$mdSidenav"];
+	HeaderComponent.$inject = ["$mdSidenav", "User", "$state"];
 
-	function HeaderComponent($mdSidenav) {
+	function HeaderComponent($mdSidenav, User, $state) {
 		var vm = this;
 
 		vm.toggleSidenav = toggleSidenav;
+		vm.logout = logout;
 
 		vm.$onInit = function() {
 		};
-		
+
 		function toggleSidenav() {
 			$mdSidenav('sidenav').toggle();
-			console.log("test"æ);
-		};
+		}
+
+		function logout() {
+			User.logout().$promise.then(function(result) {
+				$state.go("login")
+			});
+		}
 	}
 })();

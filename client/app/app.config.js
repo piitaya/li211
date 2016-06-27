@@ -55,6 +55,17 @@
     .state('main.home', {
       url: '/',
       component: 'home'
+    })
+
+    .state('main.article', {
+      url: '/articles/:slug',
+      component: 'articleDetail',
+      resolve: {
+        article: function(Article, $stateParams) {
+          var slug = $stateParams.slug;
+          return Article.findOne({where: {slug: slug}}).$promise;
+        }
+      }
     });
   }
 

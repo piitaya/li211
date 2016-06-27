@@ -139,6 +139,60 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use User.articles.findById() instead.
+        "prototype$__findById__articles": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/articles/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.articles.destroyById() instead.
+        "prototype$__destroyById__articles": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/articles/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.articles.updateById() instead.
+        "prototype$__updateById__articles": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/articles/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.comments.findById() instead.
+        "prototype$__findById__comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/comments/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.comments.destroyById() instead.
+        "prototype$__destroyById__comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/comments/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.comments.updateById() instead.
+        "prototype$__updateById__comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/comments/:fk",
+          method: "PUT"
+        },
+
         // INTERNAL. Use User.accessTokens() instead.
         "prototype$__get__accessTokens": {
           isArray: true,
@@ -211,6 +265,56 @@ module.factory(
         // INTERNAL. Use User.identities.count() instead.
         "prototype$__count__identities": {
           url: urlBase + "/users/:id/identities/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.articles() instead.
+        "prototype$__get__articles": {
+          isArray: true,
+          url: urlBase + "/users/:id/articles",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.articles.create() instead.
+        "prototype$__create__articles": {
+          url: urlBase + "/users/:id/articles",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.articles.destroyAll() instead.
+        "prototype$__delete__articles": {
+          url: urlBase + "/users/:id/articles",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.articles.count() instead.
+        "prototype$__count__articles": {
+          url: urlBase + "/users/:id/articles/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.comments() instead.
+        "prototype$__get__comments": {
+          isArray: true,
+          url: urlBase + "/users/:id/comments",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.comments.create() instead.
+        "prototype$__create__comments": {
+          url: urlBase + "/users/:id/comments",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.comments.destroyAll() instead.
+        "prototype$__delete__comments": {
+          url: urlBase + "/users/:id/comments",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.comments.count() instead.
+        "prototype$__count__comments": {
+          url: urlBase + "/users/:id/comments/count",
           method: "GET"
         },
 
@@ -818,6 +922,18 @@ module.factory(
         // INTERNAL. Use UserIdentity.user() instead.
         "::get::userIdentity::user": {
           url: urlBase + "/userIdentities/:id/user",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Article.author() instead.
+        "::get::article::author": {
+          url: urlBase + "/articles/:id/author",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Comment.author() instead.
+        "::get::comment::author": {
+          url: urlBase + "/comments/:id/author",
           method: "GET"
         },
 
@@ -1943,6 +2059,608 @@ module.factory(
         R.identities.updateById = function() {
           var TargetResource = $injector.get("UserIdentity");
           var action = TargetResource["::updateById::user::identities"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.User.articles
+     * @header lbServices.User.articles
+     * @object
+     * @description
+     *
+     * The object `User.articles` groups methods
+     * manipulating `Article` instances related to `User`.
+     *
+     * Call {@link lbServices.User#articles User.articles()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User#articles
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Queries articles of user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Article` object.)
+         * </em>
+         */
+        R.articles = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::get::user::articles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.articles#count
+         * @methodOf lbServices.User.articles
+         *
+         * @description
+         *
+         * Counts articles of user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.articles.count = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::count::user::articles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.articles#create
+         * @methodOf lbServices.User.articles
+         *
+         * @description
+         *
+         * Creates a new instance in articles of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Article` object.)
+         * </em>
+         */
+        R.articles.create = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::create::user::articles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.articles#createMany
+         * @methodOf lbServices.User.articles
+         *
+         * @description
+         *
+         * Creates a new instance in articles of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Article` object.)
+         * </em>
+         */
+        R.articles.createMany = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::createMany::user::articles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.articles#destroyAll
+         * @methodOf lbServices.User.articles
+         *
+         * @description
+         *
+         * Deletes all articles of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.articles.destroyAll = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::delete::user::articles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.articles#destroyById
+         * @methodOf lbServices.User.articles
+         *
+         * @description
+         *
+         * Delete a related item by id for articles.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for articles
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.articles.destroyById = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::destroyById::user::articles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.articles#findById
+         * @methodOf lbServices.User.articles
+         *
+         * @description
+         *
+         * Find a related item by id for articles.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for articles
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Article` object.)
+         * </em>
+         */
+        R.articles.findById = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::findById::user::articles"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.articles#updateById
+         * @methodOf lbServices.User.articles
+         *
+         * @description
+         *
+         * Update a related item by id for articles.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for articles
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Article` object.)
+         * </em>
+         */
+        R.articles.updateById = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::updateById::user::articles"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.User.comments
+     * @header lbServices.User.comments
+     * @object
+     * @description
+     *
+     * The object `User.comments` groups methods
+     * manipulating `Comment` instances related to `User`.
+     *
+     * Call {@link lbServices.User#comments User.comments()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User#comments
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Queries comments of user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::get::user::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.comments#count
+         * @methodOf lbServices.User.comments
+         *
+         * @description
+         *
+         * Counts comments of user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.comments.count = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::count::user::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.comments#create
+         * @methodOf lbServices.User.comments
+         *
+         * @description
+         *
+         * Creates a new instance in comments of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.create = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::create::user::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.comments#createMany
+         * @methodOf lbServices.User.comments
+         *
+         * @description
+         *
+         * Creates a new instance in comments of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.createMany = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::createMany::user::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.comments#destroyAll
+         * @methodOf lbServices.User.comments
+         *
+         * @description
+         *
+         * Deletes all comments of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.comments.destroyAll = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::delete::user::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.comments#destroyById
+         * @methodOf lbServices.User.comments
+         *
+         * @description
+         *
+         * Delete a related item by id for comments.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for comments
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.comments.destroyById = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::destroyById::user::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.comments#findById
+         * @methodOf lbServices.User.comments
+         *
+         * @description
+         *
+         * Find a related item by id for comments.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for comments
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.findById = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::findById::user::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User.comments#updateById
+         * @methodOf lbServices.User.comments
+         *
+         * @description
+         *
+         * Update a related item by id for comments.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         *  - `fk` – `{*}` - Foreign key for comments
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.updateById = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::updateById::user::comments"];
           return action.apply(R, arguments);
         };
 
@@ -6293,6 +7011,64 @@ module.factory(
       { 'id': '@id' },
       {
 
+        // INTERNAL. Use Article.author() instead.
+        "prototype$__get__author": {
+          url: urlBase + "/articles/:id/author",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Article.comments.findById() instead.
+        "prototype$__findById__comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/articles/:id/comments/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Article.comments.destroyById() instead.
+        "prototype$__destroyById__comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/articles/:id/comments/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Article.comments.updateById() instead.
+        "prototype$__updateById__comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/articles/:id/comments/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Article.comments() instead.
+        "prototype$__get__comments": {
+          isArray: true,
+          url: urlBase + "/articles/:id/comments",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Article.comments.create() instead.
+        "prototype$__create__comments": {
+          url: urlBase + "/articles/:id/comments",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Article.comments.destroyAll() instead.
+        "prototype$__delete__comments": {
+          url: urlBase + "/articles/:id/comments",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Article.comments.count() instead.
+        "prototype$__count__comments": {
+          url: urlBase + "/articles/:id/comments/count",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Article#create
@@ -6714,6 +7490,71 @@ module.factory(
           url: urlBase + "/articles/change-stream",
           method: "POST"
         },
+
+        // INTERNAL. Use User.articles.findById() instead.
+        "::findById::user::articles": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/articles/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.articles.destroyById() instead.
+        "::destroyById::user::articles": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/articles/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.articles.updateById() instead.
+        "::updateById::user::articles": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/articles/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.articles() instead.
+        "::get::user::articles": {
+          isArray: true,
+          url: urlBase + "/users/:id/articles",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.articles.create() instead.
+        "::create::user::articles": {
+          url: urlBase + "/users/:id/articles",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.articles.createMany() instead.
+        "::createMany::user::articles": {
+          isArray: true,
+          url: urlBase + "/users/:id/articles",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.articles.destroyAll() instead.
+        "::delete::user::articles": {
+          url: urlBase + "/users/:id/articles",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.articles.count() instead.
+        "::count::user::articles": {
+          url: urlBase + "/users/:id/articles/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Comment.article() instead.
+        "::get::comment::article": {
+          url: urlBase + "/comments/:id/article",
+          method: "GET"
+        },
       }
     );
 
@@ -6857,6 +7698,343 @@ module.factory(
     R.modelName = "Article";
 
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Article#author
+         * @methodOf lbServices.Article
+         *
+         * @description
+         *
+         * Fetches belongsTo relation author.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `User` object.)
+         * </em>
+         */
+        R.author = function() {
+          var TargetResource = $injector.get("User");
+          var action = TargetResource["::get::article::author"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Article.comments
+     * @header lbServices.Article.comments
+     * @object
+     * @description
+     *
+     * The object `Article.comments` groups methods
+     * manipulating `Comment` instances related to `Article`.
+     *
+     * Call {@link lbServices.Article#comments Article.comments()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article#comments
+         * @methodOf lbServices.Article
+         *
+         * @description
+         *
+         * Queries comments of article.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::get::article::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article.comments#count
+         * @methodOf lbServices.Article.comments
+         *
+         * @description
+         *
+         * Counts comments of article.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.comments.count = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::count::article::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article.comments#create
+         * @methodOf lbServices.Article.comments
+         *
+         * @description
+         *
+         * Creates a new instance in comments of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.create = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::create::article::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article.comments#createMany
+         * @methodOf lbServices.Article.comments
+         *
+         * @description
+         *
+         * Creates a new instance in comments of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.createMany = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::createMany::article::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article.comments#destroyAll
+         * @methodOf lbServices.Article.comments
+         *
+         * @description
+         *
+         * Deletes all comments of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.comments.destroyAll = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::delete::article::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article.comments#destroyById
+         * @methodOf lbServices.Article.comments
+         *
+         * @description
+         *
+         * Delete a related item by id for comments.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for comments
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.comments.destroyById = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::destroyById::article::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article.comments#findById
+         * @methodOf lbServices.Article.comments
+         *
+         * @description
+         *
+         * Find a related item by id for comments.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for comments
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.findById = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::findById::article::comments"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Article.comments#updateById
+         * @methodOf lbServices.Article.comments
+         *
+         * @description
+         *
+         * Update a related item by id for comments.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for comments
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Comment` object.)
+         * </em>
+         */
+        R.comments.updateById = function() {
+          var TargetResource = $injector.get("Comment");
+          var action = TargetResource["::updateById::article::comments"];
+          return action.apply(R, arguments);
+        };
+
     return R;
   }]);
 
@@ -6884,6 +8062,18 @@ module.factory(
       urlBase + "/comments/:id",
       { 'id': '@id' },
       {
+
+        // INTERNAL. Use Comment.author() instead.
+        "prototype$__get__author": {
+          url: urlBase + "/comments/:id/author",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Comment.article() instead.
+        "prototype$__get__article": {
+          url: urlBase + "/comments/:id/article",
+          method: "GET"
+        },
 
         /**
          * @ngdoc method
@@ -7306,6 +8496,124 @@ module.factory(
           url: urlBase + "/comments/change-stream",
           method: "POST"
         },
+
+        // INTERNAL. Use User.comments.findById() instead.
+        "::findById::user::comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/comments/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.comments.destroyById() instead.
+        "::destroyById::user::comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/comments/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.comments.updateById() instead.
+        "::updateById::user::comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/users/:id/comments/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use User.comments() instead.
+        "::get::user::comments": {
+          isArray: true,
+          url: urlBase + "/users/:id/comments",
+          method: "GET"
+        },
+
+        // INTERNAL. Use User.comments.create() instead.
+        "::create::user::comments": {
+          url: urlBase + "/users/:id/comments",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.comments.createMany() instead.
+        "::createMany::user::comments": {
+          isArray: true,
+          url: urlBase + "/users/:id/comments",
+          method: "POST"
+        },
+
+        // INTERNAL. Use User.comments.destroyAll() instead.
+        "::delete::user::comments": {
+          url: urlBase + "/users/:id/comments",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use User.comments.count() instead.
+        "::count::user::comments": {
+          url: urlBase + "/users/:id/comments/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Article.comments.findById() instead.
+        "::findById::article::comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/articles/:id/comments/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Article.comments.destroyById() instead.
+        "::destroyById::article::comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/articles/:id/comments/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Article.comments.updateById() instead.
+        "::updateById::article::comments": {
+          params: {
+          'fk': '@fk'
+          },
+          url: urlBase + "/articles/:id/comments/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Article.comments() instead.
+        "::get::article::comments": {
+          isArray: true,
+          url: urlBase + "/articles/:id/comments",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Article.comments.create() instead.
+        "::create::article::comments": {
+          url: urlBase + "/articles/:id/comments",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Article.comments.createMany() instead.
+        "::createMany::article::comments": {
+          isArray: true,
+          url: urlBase + "/articles/:id/comments",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Article.comments.destroyAll() instead.
+        "::delete::article::comments": {
+          url: urlBase + "/articles/:id/comments",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Article.comments.count() instead.
+        "::count::article::comments": {
+          url: urlBase + "/articles/:id/comments/count",
+          method: "GET"
+        },
       }
     );
 
@@ -7448,6 +8756,78 @@ module.factory(
     */
     R.modelName = "Comment";
 
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Comment#author
+         * @methodOf lbServices.Comment
+         *
+         * @description
+         *
+         * Fetches belongsTo relation author.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `User` object.)
+         * </em>
+         */
+        R.author = function() {
+          var TargetResource = $injector.get("User");
+          var action = TargetResource["::get::comment::author"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Comment#article
+         * @methodOf lbServices.Comment
+         *
+         * @description
+         *
+         * Fetches belongsTo relation article.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Article` object.)
+         * </em>
+         */
+        R.article = function() {
+          var TargetResource = $injector.get("Article");
+          var action = TargetResource["::get::comment::article"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);

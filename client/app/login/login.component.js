@@ -14,9 +14,7 @@
 	function LoginComponent() {
 		var vm = this;
 
-		activate();
-
-		function activate() {
+		vm.$onInit = function() {
 		}
 	}
 })();

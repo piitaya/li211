@@ -13,7 +13,7 @@
     },
     "content": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "status": {
       "type": "string",
@@ -23,10 +23,15 @@
   },
   "validations": [],
   "relations": {
-    "user": {
+    "author": {
       "type": "belongsTo",
-      "model": "author",
+      "model": "user",
       "foreignKey": "authorId"
+    },
+    "comments": {
+      "type": "hasMany",
+      "model": "comment",
+      "foreignKey": "articleId"
     }
   },
   "acls": [],

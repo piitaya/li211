@@ -14,10 +14,15 @@
   },
   "validations": [],
   "relations": {
-    "user": {
+    "author": {
       "type": "belongsTo",
-      "model": "author",
+      "model": "user",
       "foreignKey": "authorId"
+    },
+    "article": {
+      "type": "belongsTo",
+      "model": "article",
+      "foreignKey": "articleId"
     }
   },
   "acls": [],

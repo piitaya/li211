@@ -1,0 +1,9 @@
+<h1>{{vm.article.title}} ({{vm.article.status}})</h1>
+<p>{{vm.article.content}}</p>
+
+<p ng-repeat="comment in vm.comments">{{comment.content}}</p>
+
+<form ng-submit="vm.addComment()">
+  <textarea ng-model="vm.comment" ng-required></textarea>
+  <md-button type="submit">Ajouter<md-button>
+</form>

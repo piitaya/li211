@@ -9,14 +9,17 @@
 		controllerAs: "vm"
 	});
 
-	HomeComponent.$inject = [];
+	HomeComponent.$inject = ['Article'];
 
-	function HomeComponent() {
+	function HomeComponent(Article) {
 		var vm = this;
 
-		activate();
+		vm.articles = [];
 
-		function activate() {
+		vm.$onInit = function() {
+			Article.find({}).$promise.then(function(articles) {
+				vm.articles = articles;
+			});
 		}
 	}
 })();
