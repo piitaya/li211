@@ -3,6 +3,11 @@
   "plural": "users",
   "base": "User",
   "properties": {
+    "init": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
     "lastname": {
       "type": "string",
       "required": true
@@ -12,6 +17,22 @@
       "required": true
     },
     "photo": {
+      "type": "string",
+      "required": true
+    },
+    "buque": {
+      "type": "string"
+    },
+    "nums": {
+      "type": "string"
+    },
+    "nums_number": {
+      "type": "number"
+    },
+    "proms": {
+      "type": "string"
+    },
+    "birthdate": {
       "type": "string"
     }
   },

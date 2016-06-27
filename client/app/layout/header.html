@@ -1,29 +1,29 @@
 <div class="md-toolbar-tools">
-    <md-button class="md-icon-button" ng-click="vm.toggleSidenav()" hide-gt-md>
-        <md-icon>menu</md-icon>
+  <md-button class="md-icon-button" ng-click="vm.toggleSidenav()" hide-gt-md>
+    <md-icon>menu</md-icon>
+  </md-button>
+  <h2>
+    <span>Li211</span>
+  </h2>
+  <span flex></span>
+  <md-menu md-position-mode="target-right target">
+    <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+      <md-icon>more_vert</md-icon>
     </md-button>
-    <h2>
-        <span>Li211</span>
-    </h2>
-    <span flex></span>
-    <md-menu md-position-mode="target-right target">
-        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-            <md-icon>more_vert</md-icon>
+    <md-menu-content>
+      <md-menu-item>
+        <md-button>
+          <md-icon>account_circle</md-icon>
+          Account
         </md-button>
-        <md-menu-content>
-            <md-menu-item>
-                <md-button>
-                    <md-icon>account_circle</md-icon>
-                    Account
-                </md-button>
-            </md-menu-item>
-            <md-menu-divider></md-menu-divider>
-            <md-menu-item>
-                <md-button>
-                    <md-icon>exit_to_app</md-icon>
-                    Logout
-                </md-button>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
+      </md-menu-item>
+      <md-menu-divider></md-menu-divider>
+      <md-menu-item>
+        <md-button>
+          <md-icon>exit_to_app</md-icon>
+          Logout
+        </md-button>
+      </md-menu-item>
+    </md-menu-content>
+  </md-menu>
 </div>

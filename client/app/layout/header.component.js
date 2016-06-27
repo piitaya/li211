@@ -2,12 +2,12 @@
 	'use strict';
 
 	angular
-		.module('app')
-		.component('header', {
-            templateUrl: 'app/layout/header.html',
-            controller: HeaderComponent,
-            controllerAs: "vm"
-        });
+	.module('app')
+	.component('header', {
+		templateUrl: 'app/layout/header.html',
+		controller: HeaderComponent,
+		controllerAs: "vm"
+	});
 
 	HeaderComponent.$inject = ["$mdSidenav"];
 
@@ -16,9 +16,12 @@
 
 		vm.toggleSidenav = toggleSidenav;
 
+		vm.$onInit = function() {
+		};
+		
 		function toggleSidenav() {
 			$mdSidenav('sidenav').toggle();
-			console.log("test");
+			console.log("test"æ);
 		};
 	}
 })();

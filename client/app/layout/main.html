@@ -1,19 +1,19 @@
 <div layout="row" layout-fill>
-    <md-sidenav
-        md-component-id="sidenav"
-        md-is-locked-open="$mdMedia('gt-md')"
-        md-disable-backdrop
-        md-whiteframe="2">
-        <sidenav layout="column" layout-fill></sidenav>
-    </md-sidenav>
-    <div layout="column" layout-fill>
-        <md-toolbar flex="none">
-            <header></header>
-        </md-toolbar>
-        <md-content flex>
-           <div class="container">
-              <ui-view layout-padding><ui-view>
-           </div>
-        </md-content>
-    </div>
+  <md-sidenav
+  md-component-id="sidenav"
+  md-is-locked-open="$mdMedia('gt-md')"
+  md-disable-backdrop
+  md-whiteframe="2">
+  <sidenav layout="column" layout-fill user="vm.user"></sidenav>
+</md-sidenav>
+<div layout="column" layout-fill>
+  <md-toolbar flex="none">
+    <header></header>
+  </md-toolbar>
+  <md-content flex>
+    <div class="container">
+      <ui-view layout-padding><ui-view>
+      </div>
+    </md-content>
+  </div>
 </div>

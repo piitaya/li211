@@ -29,65 +29,65 @@ boot(app, __dirname, function(err) {
 
   // start the server if `$ node server.js`
   if (require.main === module)
-    app.start();
+  app.start();
 });
 
 // Load the provider configurations
 var config = {};
 try {
- config = require('./providers.json');
+  config = require('./providers.json');
 } catch(err) {
- console.error('Please configure your passport strategy in `providers.json`.');
- console.error('Copy `providers.json.template` to `providers.json` and replace the clientID/clientSecret values with your own.');
- process.exit(1);
+  console.error('Please configure your passport strategy in `providers.json`.');
+  console.error('Copy `providers.json.template` to `providers.json` and replace the clientID/clientSecret values with your own.');
+  process.exit(1);
 }
 // Initialize passport
 passportConfigurator.init();
 
 // Set up related models
 passportConfigurator.setupModels({
- userModel: app.models.user,
- userIdentityModel: app.models.userIdentity,
- userCredentialModel: app.models.userCredential
+  userModel: app.models.user,
+  userIdentityModel: app.models.userIdentity,
+  userCredentialModel: app.models.userCredential
 });
 // Configure passport strategies for third party auth providers
 for(var strategy in config) {
- var opts = config[strategy];
+  var opts = config[strategy];
 
- opts.customCallback = function (req, res, next) {
-   passport.authenticate(strategy, {session: false}, function(err, user, info) {
-       if (err) {
-         return next(err);
-       }
-       if (!user) {
-         return res.redirect(opts.failureRedirect);
-       }
-       // Add the tokens to the callback as params.
-       var redirect = opts.successRedirect;
+  opts.customCallback = function (req, res, next) {
+    passport.authenticate(strategy, {session: false}, function(err, user, info) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.redirect(opts.failureRedirect);
+      }
+      // Add the tokens to the callback as params.
+      var redirect = opts.successRedirect;
 
-       redirect += "?access_token=" + info.accessToken.id + '&userId=' + user.id.toString();
+      redirect += "?access_token=" + info.accessToken.id + '&userId=' + user.id.toString();
 
-       return res.redirect(redirect);
-     }
-   )(req, res, next);
- };
+      return res.redirect(redirect);
+    }
+  )(req, res, next);
+};
 
- opts.profileToUser = function(provider, profile, options) {
- // Let's create a user for that
-   var profileEmail = profile.emails && profile.emails[0] &&
-             profile.emails[0].value;
-   var generatedEmail = (profile.username || profile.id) + '@loopback.gadz.org';
-   var email = profileEmail ? profileEmail : generatedEmail;
-   var password = randomstring.generate(16);
-   var userObj = {
-     email: email,
-     password: password
-   };
-   userObj.lastname = profile.name.familyName;
-   userObj.firstname = profile.name.givenName;
-   userObj.photo = profile.photos[0].value;
-   return userObj;
- };
+opts.profileToUser = function(provider, profile, options) {
+  // Let's create a user for that
+  var profileEmail = profile.emails && profile.emails[0] &&
+  profile.emails[0].value;
+  var generatedEmail = (profile.username || profile.id) + '@loopback.gadz.org';
+  var email = profileEmail ? profileEmail : generatedEmail;
+  var password = randomstring.generate(16);
+  var userObj = {
+    email: email,
+    password: password
+  };
+  userObj.lastname = profile.name.familyName;
+  userObj.firstname = profile.name.givenName;
+  userObj.photo = profile.photos[0].value;
+  return userObj;
+};
 
- passportConfigurator.configureProvider(strategy, opts);
+passportConfigurator.configureProvider(strategy, opts);
 }

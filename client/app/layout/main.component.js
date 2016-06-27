@@ -2,21 +2,22 @@
 	'use strict';
 
 	angular
-		.module('app')
-		.component('main', {
-            templateUrl: 'app/layout/main.html',
-            controller: MainComponent,
-            controllerAs: "vm"
-        });
+	.module('app')
+	.component('main', {
+		templateUrl: 'app/layout/main.html',
+		controller: MainComponent,
+		controllerAs: "vm",
+		bindings: {
+			user: "<"
+		}
+	});
 
 	MainComponent.$inject = [];
 
 	function MainComponent() {
 		var vm = this;
 
-		activate();
-
-		function activate() {
-		}
+		vm.$onInit = function() {
+		};
 	}
 })();

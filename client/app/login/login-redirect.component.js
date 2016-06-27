@@ -2,12 +2,12 @@
 	'use strict';
 
 	angular
-		.module('app')
-		.component('loginRedirect', {
-			template: '',
-			controller: LoginRedirectComponent,
-			controllerAs: "vm"
-		});
+	.module('app')
+	.component('loginRedirect', {
+		template: '',
+		controller: LoginRedirectComponent,
+		controllerAs: "vm"
+	});
 
 	LoginRedirectComponent.$inject = ['$location', '$state', 'LoopBackAuth', 'User'];
 
@@ -15,7 +15,7 @@
 		var vm = this;
 
 		vm.$onInit = function() {
-            var params = $location.search();
+			var params = $location.search();
 			console.log(params);
 			LoopBackAuth.currentUserId = params.userId;
 			LoopBackAuth.accessTokenId = params.access_token;

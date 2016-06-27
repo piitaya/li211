@@ -2,12 +2,12 @@
 	'use strict';
 
 	angular
-		.module('app')
-		.component('login', {
-			templateUrl: 'app/login/login.html',
-			controller: LoginComponent,
-			controllerAs: "vm"
-		});
+	.module('app')
+	.component('login', {
+		templateUrl: 'app/login/login.html',
+		controller: LoginComponent,
+		controllerAs: "vm"
+	});
 
 	LoginComponent.$inject = [];
 
