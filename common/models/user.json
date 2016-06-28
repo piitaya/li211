@@ -36,10 +36,14 @@
       "type": "string"
     },
     "phones": {
-      "type": ["string"]
+      "type": [
+        "string"
+      ]
     },
     "emails": {
-      "type": ["string"]
+      "type": [
+        "string"
+      ]
     },
     "company": {
       "type": "string"
@@ -51,7 +55,9 @@
       "type": "string"
     },
     "location": {
-      "type": ["number"]
+      "type": [
+        "number"
+      ]
     }
   },
   "validations": [],
@@ -82,6 +88,13 @@
       "foreignKey": "authorId"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }

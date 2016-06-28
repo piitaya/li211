@@ -1,0 +1,19 @@
+<md-card ng-repeat="user in vm.users" ng-click="user.show = user.show ? false : true">
+  <md-card-header>
+    <md-card-avatar>
+      <img ng-src="{{user.photo}}" class="md-user-avatar"/>
+    </md-card-avatar>
+    <md-card-header-text>
+      <span class="md-title">{{user.lastname}} {{user.firstname}} - {{user.buque}}</span>
+      <span class="md-subhead">{{user.email}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <md-card-content ng-if="user.show">
+    <p>
+      Additionnal data
+    </p>
+  </md-card-content>
+  <md-card-actions ng-if="user.show">
+    <md-button ui-sref="main.user({slug: user.slug})" ng-click="$event.stopPropagation()">Detail</md-button>
+  </md-card-actions>
+</md-card>

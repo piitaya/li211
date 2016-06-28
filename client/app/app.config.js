@@ -34,11 +34,13 @@
       component: 'loginRedirect'
     })
 
+    // Login Page
     .state('login', {
       url: '/login',
       component: 'login'
     })
 
+    // Main State
     .state ('main', {
       abstract: true,
       component: 'main',
@@ -46,17 +48,60 @@
         requireLogin: true
       },
       resolve: {
-        user: function(User) {
-          return User.getCurrent().$promise;
+        user: function(AccountService) {
+          return AccountService.setAccount().then(function() {
+            return AccountService.getAccount();
+          });
         }
       }
     })
 
+    // Account
+    .state('main.account', {
+      url: '/account',
+      component: 'account',
+      resolve: {
+        user: function(AccountService) {
+          return AccountService.getAccount();
+        }
+      }
+    })
+
+    // user
+    .state('main.users', {
+      url: '/users',
+      component: 'userList',
+      resolve: {
+        users: function(User) {
+          return User.find().$promise;
+        }
+      }
+    })
+
+    .state('main.user', {
+      url: '/users/:slug',
+      component: 'userDetail',
+      resolve: {
+        users: function(User, $stateParams) {
+          var slug = $stateParams.slug;
+          return User.findOne({
+            filter: {
+              where: {
+                slug: slug
+              }
+            }
+          }).$promise;
+        }
+      }
+    })
+
+    // Home
     .state('main.home', {
       url: '/',
       component: 'home'
     })
 
+    // Articles
     .state('main.article-new', {
       url: '/articles/new',
       component: 'articleNew'
@@ -80,12 +125,12 @@
       }
     })
 
+    // Jobs
     .state('main.jobs', {
       url: '/jobs',
       component: 'jobList',
       resolve: {
-        jobs: function(Job, $stateParams) {
-          var slug = $stateParams.slug;
+        jobs: function(Job) {
           return Job.find({
             filter: {
               include: "author"

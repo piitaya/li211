@@ -24,6 +24,9 @@
 		}, {
 			label: "Emploi",
 			route: 'main.jobs',
+		}, {
+			label: "Membres",
+			route: 'main.users',
 		}];
 
 		vm.$onInit = function() {
