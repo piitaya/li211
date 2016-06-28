@@ -1,0 +1,69 @@
+<md-card>
+  <md-card-content>
+    <form ng-submit="vm.create()">
+      <md-input-container class="md-block">
+        <label>Titre</label>
+        <input type="text" ng-model="vm.job.title" required/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Type</label>
+        <md-select ng-model="vm.job.type">
+          <md-option value="stage">Stage</md-option>
+          <md-option value="vie">VIE</md-option>
+          <md-option value="cdd">CDD</md-option>
+          <md-option value="cdi">CDI</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Entreprise</label>
+        <input type="text" ng-model="vm.job.company"/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Lieu</label>
+        <input type="text" ng-model="vm.job.place"/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Pays</label>
+        <input type="text" ng-model="vm.job.country"/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea ng-model="vm.job.description" rows="3"></textarea>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Contact</label>
+        <input type="text" ng-model="vm.job.contactName"/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Téléphone</label>
+        <input type="tel" ng-model="vm.job.contactPhone"/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input type="email" ng-model="vm.job.contactEmail"/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Date de début</label>
+        <input type="date" ng-model="vm.job.startdate"/>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Durée</label>
+        <input type="text" ng-model="vm.job.duration"/>
+      </md-input-container>
+
+      <div layout="row" layout-align="end center">
+        <md-button type="submit" class="md-raised md-primary">Créer</md-button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

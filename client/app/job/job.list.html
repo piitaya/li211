@@ -1,0 +1,16 @@
+<div class="container">
+  <a ui-sref="main.job({slug: job.slug})" ng-repeat="job in vm.jobs | orderBy:'-creationDate'">
+    <md-card >
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{job.title}}</span>
+          <span class="md-subhead">{{job.description}}</span>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+  </a>
+</div>
+
+<md-button class="md-accent md-fab md-fab-bottom-right" ui-sref="main.job-new">
+  <md-icon>add</md-icon>
+</md-button>

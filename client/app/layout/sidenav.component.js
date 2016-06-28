@@ -19,11 +19,11 @@
 		vm.closeSidenav = closeSidenav;
 
 		vm.links = [{
-			label: "Home",
+			label: "Accueil",
 			route: 'main.home',
 		}, {
-			label: "Login",
-			route: 'login',
+			label: "Emploi",
+			route: 'main.jobs',
 		}];
 
 		vm.$onInit = function() {

@@ -57,6 +57,11 @@
       component: 'home'
     })
 
+    .state('main.article-new', {
+      url: '/articles/new',
+      component: 'articleNew'
+    })
+
     .state('main.article', {
       url: '/articles/:slug',
       component: 'articleDetail',
@@ -64,6 +69,44 @@
         article: function(Article, $stateParams) {
           var slug = $stateParams.slug;
           return Article.findOne({
+            filter: {
+              where: {
+                slug: slug
+              },
+              include: "author"
+            }
+          }).$promise;
+        }
+      }
+    })
+
+    .state('main.jobs', {
+      url: '/jobs',
+      component: 'jobList',
+      resolve: {
+        jobs: function(Job, $stateParams) {
+          var slug = $stateParams.slug;
+          return Job.find({
+            filter: {
+              include: "author"
+            }
+          }).$promise;
+        }
+      }
+    })
+
+    .state('main.job-new', {
+      url: '/jobs/new',
+      component: 'jobNew'
+    })
+
+    .state('main.job', {
+      url: '/jobs/:slug',
+      component: 'jobDetail',
+      resolve: {
+        job: function(Job, $stateParams) {
+          var slug = $stateParams.slug;
+          return Job.findOne({
             filter: {
               where: {
                 slug: slug

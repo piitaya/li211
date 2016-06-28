@@ -1,11 +1,11 @@
 var loopback = require('loopback');
 var loopbackslug = require("loopback-slug");
 
-module.exports = function(Article) {
-  Article.observe('before save', function(ctx, next) {
+module.exports = function(Job) {
+  Job.observe('before save', function(ctx, next) {
     //your logic goes here
-    loopbackslug.middleware(Article, ctx, {
-      fields: ['title'],
+    loopbackslug.middleware(Job, ctx, {
+      fields: ['title', 'company'],
       slug: "slug",
       lowercase: true,
       separator: "-"
@@ -15,7 +15,7 @@ module.exports = function(Article) {
     });
   });
 
-  Article.observe('before save', function(ctx, next) {
+  Job.observe('before save', function(ctx, next) {
     var context = loopback.getCurrentContext();
     var instance = ctx.instance;
 

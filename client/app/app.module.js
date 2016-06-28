@@ -6,6 +6,7 @@
     'ui.router',
     'ngMaterial',
     'ngAnimate',
-    'lbServices'
+    'lbServices',
+    'ngSanitize'
   ]);
 })();

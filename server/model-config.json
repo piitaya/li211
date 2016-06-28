@@ -50,5 +50,9 @@
   "comment": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "job": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }

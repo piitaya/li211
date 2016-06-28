@@ -4,7 +4,7 @@
 	angular
 	.module('app')
 	.component('articleDetail', {
-		templateUrl: 'app/article/article-detail.html',
+		templateUrl: 'app/article/article.detail.html',
 		controller: ArticleDetailComponent,
 		controllerAs: "vm",
 		bindings: {

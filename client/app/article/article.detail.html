@@ -1,7 +1,7 @@
 <md-card>
   <md-card-header>
     <md-card-avatar>
-      <img src="" class="md-user-avatar"/>
+      <img ng-src="{{vm.article.author.photo}}" class="md-user-avatar"/>
     </md-card-avatar>
     <md-card-header-text>
       <span class="md-title">{{vm.article.author.lastname}} {{vm.article.author.firstname}} - {{vm.article.author.buque}}</span>
@@ -35,13 +35,11 @@
 
     <md-list ng-if="vm.comments.length > 0">
       <md-subheader class="md-no-sticky">Commentaires ({{vm.comments.length}})</md-subheader>
-      <md-list-item class="md-3-line md-long-text comment" ng-repeat="comment in vm.comments">
-        <img src="" class="md-avatar"/>
+      <md-list-item class="md-3-line md-long-text comment" ng-repeat="comment in vm.comments | orderBy:'-creationDate'">
+        <img ng-src="{{comment.author.photo}}" class="md-avatar"/>
         <div class="md-list-item-text">
-          <h3>{{comment.author ? comment.author.firstname  + " " + comment.author.lastname : "Anonymous"}}</h3>
-          <p>
-            {{comment.content}}
-          </p>
+          <h3>{{comment.author ? comment.author.firstname  + " " + comment.author.lastname : "Anonymous"}}<small> - {{comment.creationDate | date:"short"}}</small></h3>
+          <p ng-bind-html="comment.content"></p>
         </div>
       </md-list-item>
     </md-list>

@@ -1,0 +1,21 @@
+<md-card>
+  <md-card-header>
+    <md-card-avatar>
+      <img src="" class="md-user-avatar"/>
+    </md-card-avatar>
+    <md-card-header-text>
+      <span class="md-title">{{vm.job.author.lastname}} {{vm.job.author.firstname}} - {{vm.job.author.buque}}</span>
+      <span class="md-subhead">{{vm.job.creationDate | date:"short"}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{vm.job.title}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <p>
+      {{vm.job.description}}
+    </p>
+  </md-card-content>
+</md-card>

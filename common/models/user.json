@@ -34,6 +34,24 @@
     },
     "birthdate": {
       "type": "string"
+    },
+    "phones": {
+      "type": ["string"]
+    },
+    "emails": {
+      "type": ["string"]
+    },
+    "company": {
+      "type": "string"
+    },
+    "jobRole": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "location": {
+      "type": ["number"]
     }
   },
   "validations": [],

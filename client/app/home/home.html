@@ -1,5 +1,5 @@
 <div class="container">
-  <a ui-sref="main.article({slug: article.slug})" ng-repeat="article in vm.articles">
+  <a ui-sref="main.article({slug: article.slug})" ng-repeat="article in vm.articles | orderBy:'-creationDate'">
     <md-card >
       <md-card-title>
         <md-card-title-media>
@@ -17,3 +17,7 @@
     </md-card>
   </a>
 </div>
+
+<md-button class="md-accent md-fab md-fab-bottom-right" ui-sref="main.article-new">
+  <md-icon>add</md-icon>
+</md-button>

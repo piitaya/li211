@@ -6,14 +6,16 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Counts": true
+  },
   "properties": {
     "title": {
       "type": "string",
       "required": true
     },
     "content": {
-      "type": "string",
-      "required": false
+      "type": "string"
     },
     "status": {
       "type": "string",
@@ -35,8 +37,5 @@
     }
   },
   "acls": [],
-  "methods": {},
-  "mixins": {
-    "Counts": true
-  }
+  "methods": {}
 }
